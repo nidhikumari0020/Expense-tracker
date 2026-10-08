@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/*
+ * THEME SYSTEM — single source of truth for colors.
+ * Raw palette (never referenced directly in components):
+ *   #040D12 deep bg · #151515 dark surface · #183D3D deep teal · #5C8374 primary teal
+ *   #93B1A6 soft sage · #301B3F deep purple · #3C415C muted indigo · #B4A5A5 warm gray
+ * Components use ONLY the semantic --color-* tokens below.
+ */
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --pal-bg: #040D12;
+  --pal-surface: #151515;
+  --pal-teal-deep: #183D3D;
+  --pal-teal: #5C8374;
+  --pal-sage: #93B1A6;
+  --pal-purple: #301B3F;
+  --pal-indigo: #3C415C;
+  --pal-warm-gray: #B4A5A5;
+
+  /* ================= DARK THEME (DEFAULT) ================= */
+  --color-bg: var(--pal-bg);
+  --color-surface: var(--pal-surface);
+  --color-surface-muted: #112222;          /* teal-tinted selected / hover surface */
+  --color-border: #1E2A2A;
+  --color-border-strong: #2C4040;
+  --color-text: #DCE6E2;                   /* softened, avoids harsh white-on-black */
+  --color-text-muted: var(--pal-warm-gray);
+  --color-text-subtle: #8FA39B;
+
+  --color-primary: var(--pal-teal);
+  --color-primary-hover: #6B9484;
+  --color-primary-contrast: #040D12;
+  --color-secondary: var(--pal-teal-deep);
+  --color-secondary-hover: #1F4A4A;
+  --color-brand-from: var(--pal-teal-deep);
+  --color-brand-to: var(--pal-teal);
+  --color-on-brand: #DCE6E2;
+
+  --color-income: var(--pal-sage);
+  --color-income-bg: #12241F;
+  --color-expense: #C98585;
+  --color-expense-bg: #251619;
+  --color-info: var(--pal-sage);
+  --color-info-bg: #12201E;
+  --color-warning: #C4A171;
+  --color-warning-bg: #231D14;
+  --color-purple: #A99BC2;
+  --color-purple-bg: var(--pal-purple);
+  --color-indigo: #9AA0C4;
+  --color-indigo-bg: var(--pal-indigo);
+
+  /* Charts */
+  --chart-income: #5C8374;
+  --chart-expense: #C98585;
+  --chart-grid: #1E2A2A;
+  --chart-axis: #8FA39B;
+  --chart-series-1: #5C8374;
+  --chart-series-2: #93B1A6;
+  --chart-series-3: #3C415C;
+  --chart-series-4: #B4A5A5;
+  --chart-series-5: #7A5C96;
+  --chart-series-6: #183D3D;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+/* ================= LIGHT THEME (derived from same palette) ================= */
+:root[data-theme="light"] {
+  --color-bg: #F1F5F3;
+  --color-surface: #FBFCFB;
+  --color-surface-muted: #E6EEEA;
+  --color-border: #D6E0DB;
+  --color-border-strong: #B3C3BB;
+  --color-text: #0C1A1D;
+  --color-text-muted: #5E5656;
+  --color-text-subtle: #5F7A6F;
+
+  --color-primary: var(--pal-teal-deep);
+  --color-primary-hover: #0F2B2B;
+  --color-primary-contrast: #F1F5F3;
+  --color-secondary: var(--pal-teal);
+  --color-secondary-hover: #4D7264;
+  --color-brand-from: var(--pal-teal-deep);
+  --color-brand-to: var(--pal-teal);
+  --color-on-brand: #F1F5F3;
+
+  --color-income: #2F6B57;
+  --color-income-bg: #E3EFEA;
+  --color-expense: #A64F55;
+  --color-expense-bg: #F6E8E8;
+  --color-info: var(--pal-indigo);
+  --color-info-bg: #E9EAF1;
+  --color-warning: #8F6528;
+  --color-warning-bg: #F6EEDF;
+  --color-purple: var(--pal-purple);
+  --color-purple-bg: #EFE8F4;
+  --color-indigo: var(--pal-indigo);
+  --color-indigo-bg: #E9EAF1;
+
+  --chart-income: #2F6B57;
+  --chart-expense: #A64F55;
+  --chart-grid: #D6E0DB;
+  --chart-axis: #5F7A6F;
+  --chart-series-1: #183D3D;
+  --chart-series-2: #5C8374;
+  --chart-series-3: #3C415C;
+  --chart-series-4: #93B1A6;
+  --chart-series-5: #301B3F;
+  --chart-series-6: #B4A5A5;
+
+  --shadow-sm: 0 1px 2px rgba(4, 13, 18, 0.06);
+  --shadow-md: 0 4px 14px rgba(4, 13, 18, 0.08);
+  --shadow-lg: 0 14px 34px rgba(4, 13, 18, 0.14);
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Prevent horizontal overflow from wide children */
+html, body, #root { max-width: 100%; overflow-x: hidden; }
+
+::selection { background: var(--color-secondary); color: var(--color-on-brand); }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle); }
